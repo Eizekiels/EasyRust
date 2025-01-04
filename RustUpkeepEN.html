@@ -1,0 +1,336 @@
+# Save the HTML content as a file
+file_path = "/mnt/data/RustUpkeepServices.html"
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rust Upkeep Services</title>
+
+    <script>
+        // Global Variables
+        const STANDARD_SERVICE_PRICE = 10; // Price in Euros per week
+        const VIP_SERVICE_PRICE = 5; // Price in Euros per day
+        const STANDARD_SERVICE_LOGINS = "1-2 daily logins";
+        const VIP_SERVICE_LOGINS = "3-4 daily logins and priority support";
+        const PAYPAL_URL = "https://paypal.me/ZTavern1";
+    </script>
+
+    <style>
+        /* General page style */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://i.ibb.co/LRv3LVm/Rust-Upkeep.webp') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        section {
+            padding: 60px 10px;
+            text-align: center;
+        }
+
+        h1, h2, h3 {
+            color: #FFD700;
+        }
+
+        .service, .pricing-option {
+            margin: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service:hover, .pricing-option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .service p, .pricing-option p {
+            font-size: 18px;
+            color: #ddd;
+        }
+
+        .pricing-table {
+            display: flex;
+            justify-content: center;
+        }
+
+        .pricing-option {
+            margin: 0 20px;
+            width: 250px;
+        }
+
+        .pricing-option a {
+            display: block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .pricing-option a:hover {
+            background-color: #45a049;
+        }
+
+        form input, form textarea {
+            width: 80%;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border 0.3s ease;
+        }
+
+        form input:hover, form textarea:hover {
+            border-color: #FFD700;
+        }
+
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .image-section img:hover {
+            transform: scale(1.05);
+        }
+
+        .graph-container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        canvas {
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#graphs">Graphs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="intro">
+            <h1>Rust Base Upkeep, Including Farming!</h1>
+            <p>Tired of managing your base? Let us handle it!</p>
+            <a href="#contact" class="btn">Get Started Now</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="service">
+            <h3>Standard Service</h3>
+            <p>For €<span id="standardPrice">10</span> per week, we handle your base upkeep with <span id="standardLogins">1-2 daily logins</span>. You can sleep peacefully!</p>
+            <button class="btn" id="standardBtn">Choose Service</button>
+        </div>
+        <div class="service">
+            <h3>VIP Service</h3>
+            <p>Need more attention? For €<span id="vipPrice">5</span> per day, we include farming, <span id="vipLogins">3-4 daily logins and priority support</span>. Boost your experience!</p>
+            <button class="btn" id="vipBtn">Choose Service</button>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <h2>Pricing</h2>
+        <div class="pricing-table">
+            <div class="pricing-option">
+                <h3>Standard</h3>
+                <p>€<span id="standardPrice2">10</span> / week</p>
+                <p>Basic upkeep with <span id="standardLogins2">1-2 daily logins</span>.</p>
+                <button class="btn" onclick="redirectToPaypal('Standard', STANDARD_SERVICE_PRICE)">I want this service!</button>
+            </div>
+            <div class="pricing-option">
+                <h3>VIP</h3>
+                <p>€<span id="vipPrice2">5</span> / day</p>
+                <p>Farming + <span id="vipLogins2">3-4 daily logins and priority support</span>.</p>
+                <button class="btn" onclick="redirectToPaypal('VIP', VIP_SERVICE_PRICE)">I want this service!</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="graphs">
+        <h2>Customer Insights</h2>
+        <div class="graph-container">
+            <canvas id="customerChart"></canvas>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea><br>
+            <button type="submit" class="btn">Send</button>
+        </form>
+        <p id="formMessage" style="color: #FFD700;"></p>
+    </section>
+
+    <section class="image-section">
+        <h2>Dive Into the Rust Universe</h2>
+        <img src="c:\Users\Kiels Main\Desktop\DALL·E 2025-01-04 16.37.05 - A realistic Rust-inspired base constructed using authentic in-game textures. The base features a blend of wood, stone, and sheet metal materials, high.webp" alt="Rust Gameplay">
+        <img src="" alt="Rust Landscape">
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Rust Upkeep Services | All rights reserved</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Use global variables in scripts
+        document.getElementById("standardPrice").textContent = STANDARD_SERVICE_PRICE;
+        document.getElementById("vipPrice").textContent = VIP_SERVICE_PRICE;
+        document.getElementById("standardLogins").textContent = STANDARD_SERVICE_LOGINS;
+        document.getElementById("vipLogins").textContent = VIP_SERVICE_LOGINS;
+        document.getElementById("standardPrice2").textContent = STANDARD_SERVICE_PRICE;
+        document.getElementById("vipPrice2").textContent = VIP_SERVICE_PRICE;
+        document.getElementById("standardLogins2").textContent = STANDARD_SERVICE_LOGINS;
+        document.getElementById("vipLogins2").textContent = VIP_SERVICE_LOGINS;
+
+        // Interactive PayPal redirection
+        function redirectToPaypal(service, price) {
+            const userConfirmed = confirm(`You selected the ${service} service for €${price}. Proceed to payment?`);
+            if (userConfirmed) {
+                window.location.href = PAYPAL_URL;
+            }
+        }
+
+        // Chart.js Graph
+        const ctx = document.getElementById('customerChart').getContext('2d');
+        const customerChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Standard Service', 'VIP Service'],
+                datasets: [{
+                    label: 'Number of Subscriptions',
+                    data: [45, 25], // Example data
+                    backgroundColor: ['rgba(76, 175, 80, 0.85)', 'rgba(255, 215, 0, 0.85)']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    title: {
+                        display: true,
+                        text: 'Customer Preferences'
+                    }
+                }
+            }
+        });
+
+        // Actions for subscription buttons
+        document.getElementById("standardBtn").addEventListener("click", function() {
+            redirectToPaypal('Standard', STANDARD_SERVICE_PRICE);
+        });
+
+        document.getElementById("vipBtn").addEventListener("click", function() {
+            redirectToPaypal('VIP', VIP_SERVICE_PRICE);
+        });
+
+        // Action for contact form
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            // Display confirmation message
+            const formMessage = document.getElementById("formMessage");
+            formMessage.textContent = `Thank you ${name}! We have received your message and will respond at ${email}.`;
+
+            // Reset form
+            document.getElementById("contactForm").reset();
+        });
+    </script>
+</body>
+</html>
+"""
+with open(file_path, "w") as file:
+    file.write(html_content)
+
+file_path
