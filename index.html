@@ -29,6 +29,28 @@
             font-family: 'Impact', sans-serif;
         }
 
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #202a34;
+            padding: 10px;
+            border-bottom: 3px solid #D4AF37;
+        }
+
+        nav a {
+            color: #D4AF37;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-family: 'Verdana', sans-serif;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
         section {
             padding: 40px 20px;
             text-align: center;
@@ -63,6 +85,10 @@
             transform: scale(1.05);
         }
 
+        button:active {
+            transform: scale(0.95);
+        }
+
         select {
             padding: 10px;
             font-size: 16px;
@@ -74,25 +100,50 @@
         }
 
         footer {
-            background-color: #2e3b44;
+            background-color: #202a34;
             text-align: center;
             padding: 20px;
             border-top: 3px solid #D4AF37;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
-        footer p {
-            color: white;
-            margin: 0;
-            font-family: 'Verdana', sans-serif;
+        footer a {
+            color: #D4AF37;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
+
+        .faq-section {
+            border-top: 3px solid #D4AF37;
+            margin-top: 40px;
+            padding-top: 40px;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
     <header>
         <img src="https://i.ibb.co/q73xCvC/Easy-Rust-logo-cleaned-transparent.png" alt="EasyRust Logo" style="width: 150px; margin-bottom: 10px;">
-        <h1>EasyRust</h1>
+        <h1>EasyRust Services</h1>
         <p>A Clan for Your Clan! Order Services for Your Squad Base</p>
     </header>
+
+    <nav>
+        <a href="#resources">Resources</a>
+        <a href="#raid-protect">Raid Protect</a>
+        <a href="#daily-upkeep">Daily Upkeep</a>
+        <a href="#electric-tips">Electric & Tips</a>
+    </nav>
 
     <section id="resources">
         <h2>Order Resources</h2>
@@ -169,8 +220,22 @@
         <button onclick="alert('Tips & Tricks - €50 per session')">Order Tips & Tricks (€50 per session)</button>
     </section>
 
+    <section class="faq-section" id="faq">
+        <h2>FAQ</h2>
+        <p><strong>Q:</strong> Is this service affiliated with the game developers?<br><strong>A:</strong> No, this is an independent service provided by players for players.</p>
+        <p><strong>Q:</strong> What happens if I’m banned from the server?<br><strong>A:</strong> Unfortunately, we cannot offer refunds in such cases.</p>
+        <p><strong>Q:</strong> How are resources delivered?<br><strong>A:</strong> Resources are delivered via in-game trades or drops, depending on the server rules.</p>
+        <p><strong>Q:</strong> Is the service safe and fair?<br><strong>A:</strong> Yes, all services adhere to the rules of the servers we operate on.</p>
+    </section>
+
+    <section class="faq-section" id="legal">
+        <h2>Legal Disclaimer</h2>
+        <p>EasyRust Services operates independently and is not affiliated with or endorsed by Facepunch Studios or any official Rust entities. By using our services, you acknowledge that we are not responsible for any actions taken by server administrators or the game developers. Use of our services is at your own risk, and we adhere to the terms and conditions of the servers we operate on. All transactions are final and non-refundable.</p>
+    </section>
+
     <footer>
-        <p>&copy; 2025 EasyRust | All Rights Reserved</p>
+        <a href="#faq">FAQ</a>
+        <a href="#legal">Legal Disclaimer</a>
     </footer>
 </body>
 </html>
