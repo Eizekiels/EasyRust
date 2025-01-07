@@ -134,9 +134,61 @@
             padding-top: 40px;
         }
 
-        .hidden {
+        .contact-form {
             display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background-color: #2e3b44;
+            padding: 20px;
+            border: 2px solid #D4AF37;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.5s ease forwards;
         }
+
+        .contact-form h2 {
+            margin: 0 0 10px;
+            color: #D4AF37;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #D4AF37;
+            border-radius: 5px;
+            background-color: #1b1f23;
+            color: #D4AF37;
+        }
+
+        .contact-form button {
+            width: 100%;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -151,6 +203,7 @@
         <a href="#raid-protect">Raid Protect</a>
         <a href="#daily-upkeep">Daily Upkeep</a>
         <a href="#electric-tips">Electric & Tips</a>
+        <a href="#" onclick="showContactForm()">Contact</a>
     </nav>
 
     <section id="resources">
@@ -246,5 +299,29 @@
         <a href="#legal">Legal Disclaimer</a>
         <p>&copy; 2025 EasyRust | All Rights Reserved</p>
     </footer>
+
+    <div class="overlay" id="overlay" onclick="hideContactForm()"></div>
+    <div class="contact-form" id="contactForm">
+        <h2>Contact Us</h2>
+        <form action="mailto:eizekiels@gmail.com" method="post" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <button onclick="hideContactForm()">Close</button>
+    </div>
+
+    <script>
+        function showContactForm() {
+            document.getElementById('contactForm').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function hideContactForm() {
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
