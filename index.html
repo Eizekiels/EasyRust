@@ -86,6 +86,49 @@
             color: white;
             margin: 0;
         }
+
+        .chat-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .chat-container textarea {
+            width: 100%;
+            height: 80px;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            resize: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: black;
+        }
+
+        .chat-container .chat-log {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .chat-log p {
+            margin: 5px 0;
+        }
+
+        .chat-log .user-message {
+            color: #FFD700;
+        }
+
+        .chat-log .admin-message {
+            color: #4CAF50;
+        }
     </style>
 </head>
 <body>
@@ -94,88 +137,16 @@
         <p>A Clan for Your Clan! Order Services for Your Squad Base</p>
     </header>
 
-    <section id="resources">
-        <h2>Order Resources</h2>
-        <p>Metal, stone, HQM, sulfur, guns, diesel, etc.</p>
-        <p>Fastest delivery guaranteed!</p>
-        <select class="dropdown" id="resourcesServerType">
-            <option value="vanilla">Vanilla</option>
-            <option value="2x">2x</option>
-            <option value="modded">Modded</option>
-        </select>
-        <select class="dropdown" id="resourcesGroupSize">
-            <option value="solo">Solo</option>
-            <option value="duo">Duo</option>
-            <option value="clan">Clan</option>
-        </select>
-        <button onclick="redirectToPaypal('Order Resources - €15 per delivery')">Order Now (€15 per delivery)</button>
-    </section>
-
-    <section id="raid-protect">
-        <h2>Raid Protect</h2>
-        <p>Protect your base from offline raids!</p>
-        <p>A squad stays online while you're away.</p>
-        <select class="dropdown" id="raidServerType">
-            <option value="vanilla">Vanilla</option>
-            <option value="2x">2x</option>
-            <option value="modded">Modded</option>
-        </select>
-        <select class="dropdown" id="raidGroupSize">
-            <option value="solo">Solo</option>
-            <option value="duo">Duo</option>
-            <option value="clan">Clan</option>
-        </select>
-        <button onclick="redirectToPaypal('Raid Protect - €20 per hour')">Order Now (€20 per hour)</button>
-    </section>
-
-    <section id="daily-upkeep">
-        <h2>Daily Upkeep</h2>
-        <p>Never worry about decay again.</p>
-        <p>Daily logins for:</p>
-        <select class="dropdown" id="upkeepServerType">
-            <option value="vanilla">Vanilla</option>
-            <option value="2x">2x</option>
-            <option value="modded">Modded</option>
-        </select>
-        <select class="dropdown" id="upkeepGroupSize">
-            <option value="solo">Solo</option>
-            <option value="duo">Duo</option>
-            <option value="clan">Clan</option>
-        </select>
-        <button onclick="redirectToPaypal('Daily Upkeep - €5 per day')">1 Day (€5)</button>
-        <button onclick="redirectToPaypal('Weekly Upkeep - €15 per week')">7 Days (€15)</button>
-        <button onclick="redirectToPaypal('Monthly Upkeep - €50 per month')">30 Days (€50)</button>
-    </section>
-
-    <section id="electric-tips">
-        <h2>Electric & Tips</h2>
-        <p>Electric circuit setup (motion-sensor turrets, super smelters, etc.)</p>
-        <p>Learn the deepest knowledge of Rust!</p>
-        <select class="dropdown" id="electricServerType">
-            <option value="vanilla">Vanilla</option>
-            <option value="2x">2x</option>
-            <option value="modded">Modded</option>
-        </select>
-        <select class="dropdown" id="electricGroupSize">
-            <option value="solo">Solo</option>
-            <option value="duo">Duo</option>
-            <option value="clan">Clan</option>
-        </select>
-        <button onclick="redirectToPaypal('Electric Setup - €25 per project')">Order Electric Setup (€25)</button>
-        <button onclick="redirectToPaypal('Tips & Guides - €10 per session')">Order Tips & Tricks (€10 per session)</button>
-    </section>
-
-    <section id="custom-requests">
-        <h2>Custom Requests</h2>
-        <p>Have a unique request? Let us know and we’ll make it happen!</p>
-        <p>DM Kiels on Discord.</p>
-        <button onclick="redirectToPaypal('Custom Request - Contact for Pricing')">Contact for Custom Request</button>
-    </section>
-
     <section id="chat-support">
         <h2>Live Chat Support</h2>
         <p>Need assistance or have questions? Use our live chat feature for real-time help!</p>
-        <button onclick="startLiveChat()">Start Live Chat</button>
+        <div class="chat-container">
+            <div class="chat-log" id="chatLog">
+                <!-- Chat messages will appear here -->
+            </div>
+            <textarea id="chatInput" placeholder="Type your message here..."></textarea>
+            <button onclick="sendMessage()">Send Message</button>
+        </div>
     </section>
 
     <footer>
@@ -183,18 +154,45 @@
     </footer>
 
     <script>
-        function redirectToPaypal(service) {
-            const serverType = document.querySelector(`#${service.split(' ')[0].toLowerCase()}ServerType`).value;
-            const groupSize = document.querySelector(`#${service.split(' ')[0].toLowerCase()}GroupSize`).value;
-            alert(`You have selected: ${service}.
-Server Type: ${serverType}
-Group Size: ${groupSize}
-Redirecting to PayPal...`);
-            window.location.href = 'https://paypal.me/ZTavern1';
+        function sendMessage() {
+            const chatLog = document.getElementById('chatLog');
+            const chatInput = document.getElementById('chatInput');
+            const userMessage = chatInput.value.trim();
+
+            if (userMessage) {
+                // Display user message
+                const userMessageElement = document.createElement('p');
+                userMessageElement.className = 'user-message';
+                userMessageElement.textContent = `You: ${userMessage}`;
+                chatLog.appendChild(userMessageElement);
+
+                // Simulate sending email
+                sendEmail(userMessage);
+
+                // Clear the input
+                chatInput.value = '';
+            }
         }
 
-        function startLiveChat() {
-            alert('Live chat feature coming soon!');
+        function sendEmail(message) {
+            const email = "eizekiels@gmail.com";
+            const subject = "New Live Chat Message";
+            const body = `You have received a new message:\n\n${message}`;
+
+            // Simulate sending an email (replace this with actual email sending logic on the server)
+            alert(`Email sent to ${email}\nSubject: ${subject}\nBody: ${body}`);
+
+            // Simulate admin reply
+            setTimeout(() => receiveReply("Thanks for reaching out! We'll get back to you shortly."), 3000);
+        }
+
+        function receiveReply(reply) {
+            const chatLog = document.getElementById('chatLog');
+
+            const adminMessageElement = document.createElement('p');
+            adminMessageElement.className = 'admin-message';
+            adminMessageElement.textContent = `Admin: ${reply}`;
+            chatLog.appendChild(adminMessageElement);
         }
     </script>
 </body>
