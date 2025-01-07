@@ -7,113 +7,90 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Verdana', sans-serif;
             margin: 0;
             padding: 0;
-            background: url('https://wallpapers.com/images/hd/rust-game-72b079fxn1h603f4.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background: linear-gradient(to bottom, #14191f, #202a34);
             color: white;
         }
 
         header {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: #2e3b44;
             padding: 20px;
             text-align: center;
+            position: relative;
+            border-bottom: 3px solid #D4AF37;
         }
 
         header h1 {
-            color: #FFD700;
+            color: #D4AF37;
             margin: 0;
-            font-size: 36px;
+            font-size: 42px;
+            font-family: 'Impact', sans-serif;
         }
 
         section {
             padding: 40px 20px;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: #2e3b44;
             margin: 20px;
             border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
         }
 
         section h2 {
-            color: #FFD700;
+            color: #D4AF37;
             margin-bottom: 20px;
-        }
-
-        section p {
-            font-size: 18px;
-            margin: 10px 0;
-            color: #DDD;
+            font-family: 'Verdana', sans-serif;
         }
 
         button {
-            background-color: rgba(76, 175, 80, 0.9);
-            color: white;
+            background-color: #10141b;
+            color: #D4AF37;
             padding: 15px 30px;
             font-size: 16px;
-            border: none;
-            border-radius: 5px;
+            font-family: 'Verdana', sans-serif;
+            border: 2px solid #D4AF37;
+            border-radius: 8px;
             cursor: pointer;
             margin: 10px;
             transition: all 0.3s ease;
         }
 
         button:hover {
-            background-color: rgba(76, 175, 80, 1);
+            background-color: #D4AF37;
+            color: #1b1f23;
             transform: scale(1.05);
         }
 
-        .dropdown {
-            margin-top: 15px;
+        select {
             padding: 10px;
             font-size: 16px;
             border-radius: 5px;
-            border: none;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-        }
-
-        .clan-size-input {
-            display: none;
-            margin: 15px auto;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            width: 50%;
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            transform: scale(0.95);
-        }
-
-        .clan-size-input.show {
-            display: block;
-            opacity: 1;
-            transform: scale(1);
+            border: 1px solid #D4AF37;
+            background-color: #1b1f23;
+            color: #D4AF37;
+            margin: 10px;
         }
 
         footer {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: #2e3b44;
             text-align: center;
             padding: 20px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            border-top: 3px solid #D4AF37;
         }
 
         footer p {
             color: white;
             margin: 0;
+            font-family: 'Verdana', sans-serif;
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="https://i.ibb.co/16jBXCx/DALL-E-2025-01-07-21-12-53-A-simple-and-confident-logo-for-a-company-named-Easy-Rust-The-logo-should.webp" alt="EasyRust Logo" style="width: 150px; margin-bottom: 10px;">
-        <h1 style="font-family: 'Georgia', serif; font-size: 42px;">EasyRust</h1>
+        <img src="https://i.ibb.co/q73xCvC/Easy-Rust-logo-cleaned-transparent.png" alt="EasyRust Logo" style="width: 150px; margin-bottom: 10px;">
+        <h1>EasyRust</h1>
         <p>A Clan for Your Clan! Order Services for Your Squad Base</p>
     </header>
 
@@ -121,97 +98,79 @@
         <h2>Order Resources</h2>
         <p>Metal, stone, HQM, sulfur, guns, diesel, etc.</p>
         <p>Fastest delivery guaranteed!</p>
-        <select class="dropdown" id="resourcesServerType">
+        <select id="resourcesServerType">
             <option value="vanilla">Vanilla</option>
             <option value="2x">2x</option>
             <option value="modded">Modded</option>
         </select>
-        <select class="dropdown" id="resourcesGroupSize" onchange="handleClanOption('resources')">
+        <select id="resourcesGroupSize">
             <option value="solo">Solo</option>
             <option value="duo">Duo</option>
             <option value="quad">Quad</option>
             <option value="clan">Clan</option>
         </select>
-        <input type="number" id="clanSizeResources" class="clan-size-input" placeholder="Enter clan size" />
-        <button onclick="redirectToPaypal('resources', 'Order Resources - Custom Amount')">Order Now (€15 per delivery)</button>
+        <button onclick="alert('Order Resources!')">Order Now (Custom Amount)</button>
     </section>
 
     <section id="raid-protect">
         <h2>Raid Protect</h2>
         <p>Protect your base from offline raids!</p>
         <p>A squad stays online while you're away.</p>
-        <select class="dropdown" id="raidServerType">
+        <select id="raidServerType">
             <option value="vanilla">Vanilla</option>
             <option value="2x">2x</option>
             <option value="modded">Modded</option>
         </select>
-        <select class="dropdown" id="raidGroupSize" onchange="handleClanOption('raid')">
+        <select id="raidGroupSize">
             <option value="solo">Solo</option>
             <option value="duo">Duo</option>
             <option value="quad">Quad</option>
             <option value="clan">Clan</option>
         </select>
-        <input type="number" id="clanSizeRaid" class="clan-size-input" placeholder="Enter clan size" />
-        <button onclick="redirectToPaypal('raid', 'Raid Protect - €20 per hour')">Order Now (€20 per hour)</button>
+        <button onclick="alert('Raid Protect - €20 per hour')">Order Now (€20 per hour)</button>
     </section>
 
     <section id="daily-upkeep">
         <h2>Daily Upkeep</h2>
         <p>Never worry about decay again.</p>
         <p>Daily logins for:</p>
-        <select class="dropdown" id="upkeepServerType">
+        <select id="upkeepServerType">
             <option value="vanilla">Vanilla</option>
             <option value="2x">2x</option>
             <option value="modded">Modded</option>
         </select>
-        <select class="dropdown" id="upkeepGroupSize" onchange="handleClanOption('upkeep')">
+        <select id="upkeepGroupSize">
             <option value="solo">Solo</option>
             <option value="duo">Duo</option>
             <option value="quad">Quad</option>
             <option value="clan">Clan</option>
         </select>
-        <input type="number" id="clanSizeUpkeep" class="clan-size-input" placeholder="Enter clan size" />
-        <button onclick="redirectToPaypal('upkeep', 'Daily Upkeep - €5 per day')">1 Day (€5)</button>
-        <button onclick="redirectToPaypal('upkeep', 'Weekly Upkeep - €15 per week')">7 Days (€15)</button>
-        <button onclick="redirectToPaypal('upkeep', 'Monthly Upkeep - €50 per month')">30 Days (€50)</button>
+        <button onclick="alert('Daily Upkeep - €5 per day')">1 Day (€5)</button>
+        <button onclick="alert('Weekly Upkeep - €15 per week')">7 Days (€15)</button>
+        <button onclick="alert('Monthly Upkeep - €50 per month')">30 Days (€50)</button>
+    </section>
+
+    <section id="electric-tips">
+        <h2>Electric & Tips</h2>
+        <p>Electric circuit setup (motion-sensor turrets, super smelters, etc.)</p>
+        <p>Learn the deepest knowledge of Rust!</p>
+        <select id="electricServerType">
+            <option value="vanilla">Vanilla</option>
+            <option value="2x">2x</option>
+            <option value="modded">Modded</option>
+        </select>
+        <select id="electricGroupSize">
+            <option value="solo">Solo</option>
+            <option value="duo">Duo</option>
+            <option value="quad">Quad</option>
+            <option value="clan">Clan</option>
+        </select>
+        <button onclick="alert('Electric Setup - €25 per project')">Order Electric Setup (€25)</button>
+        <button onclick="alert('Tips & Tricks - €50 per session')">Order Tips & Tricks (€50 per session)</button>
     </section>
 
     <footer>
         <p>&copy; 2025 EasyRust | All Rights Reserved</p>
     </footer>
-
-    <script>
-        function redirectToPaypal(section, service) {
-            const serverType = document.getElementById(`${section}ServerType`).value;
-            const groupSize = document.getElementById(`${section}GroupSize`).value;
-            let clanSize = '';
-
-            if (groupSize === 'clan') {
-                const clanSizeInput = document.getElementById(`clanSize${section.charAt(0).toUpperCase() + section.slice(1)}`);
-                clanSize = clanSizeInput.value;
-                if (!clanSize) {
-                    alert('Please enter the size of your clan.');
-                    return;
-                }
-            }
-
-            alert(`You have selected: ${service}.
-Server Type: ${serverType}
-Group Size: ${groupSize} ${clanSize ? '(Clan size: ' + clanSize + ')' : ''}
-Redirecting to PayPal...`);
-            window.location.href = 'https://paypal.me/ZTavern1';
-        }
-
-        function handleClanOption(section) {
-            const groupSize = document.getElementById(`${section}GroupSize`).value;
-            const clanSizeInput = document.getElementById(`clanSize${section.charAt(0).toUpperCase() + section.slice(1)}`);
-
-            if (groupSize === 'clan') {
-                clanSizeInput.classList.add('show');
-            } else {
-                clanSizeInput.classList.remove('show');
-            }
-        }
-    </script>
 </body>
 </html>
