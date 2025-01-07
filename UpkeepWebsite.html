@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyRust Services</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://wallpapers.com/images/hd/rust-game-fvem7wo2c4nc4rfq.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #FFD700;
+            margin: 0;
+            font-size: 36px;
+        }
+
+        section {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        section h2 {
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #DDD;
+        }
+
+        button {
+            background-color: rgba(76, 175, 80, 0.9);
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgba(76, 175, 80, 1);
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            color: white;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>EasyRust</h1>
+        <p>A Clan for Your Clan! Order Services for Your Squad Base</p>
+    </header>
+
+    <section id="resources">
+        <h2>Order Resources</h2>
+        <p>Metal, stone, HQM, sulfur, guns, diesel, etc.</p>
+        <p>Fastest delivery guaranteed!</p>
+        <button onclick="orderService('Order Resources - Case by Case')">Order Now (€ ???)</button>
+    </section>
+
+    <section id="raid-protect">
+        <h2>Raid Protect</h2>
+        <p>Protect your base from offline raids!</p>
+        <p>A squad stays online while you're away.</p>
+        <button onclick="orderService('Raid Protect - €20 per hour')">Order Now (€20 per hour)</button>
+    </section>
+
+    <section id="daily-upkeep">
+        <h2>Daily Upkeep</h2>
+        <p>Never worry about decay again.</p>
+        <p>Daily logins for:</p>
+        <button onclick="orderService('Daily Upkeep - €5 per day')">1 Day (€5)</button>
+        <button onclick="orderService('Weekly Upkeep - €25 per week')">7 Days (€25)</button>
+        <button onclick="orderService('Monthly Upkeep - €75 per month')">30 Days (€75)</button>
+    </section>
+
+    <section id="electric-tips">
+        <h2>Electric & Tips</h2>
+        <p>Electric circuit setup (motion-sensor turrets, super smelters, etc.)</p>
+        <p>Learn the deepest knowledge of Rust!</p>
+        <button onclick="orderService('Electric Setup - €25 per project')">Order Electric Setup (€25)</button>
+        <button onclick="orderService('Tips & Guides - €10 per session')">Order Tips & Tricks (€10 per session)</button>
+    </section>
+
+    <section id="custom-requests">
+        <h2>Custom Requests</h2>
+        <p>Have a unique request? Let us know and we’ll make it happen!</p>
+        <p>DM Kiels on Discord.</p>
+        <button onclick="contactForCustomRequest()">Contact for Custom Request</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 EasyRust | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        function orderService(service) {
+            alert(`You have selected: ${service}. Please contact us on Discord (Kiels) to finalize your order.`);
+        }
+
+        function contactForCustomRequest() {
+            alert('For custom requests, please DM Kiels on Discord.');
+        }
+    </script>
+</body>
+</html>
