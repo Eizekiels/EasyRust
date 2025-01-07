@@ -19,12 +19,31 @@
             background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
             text-align: center;
+            position: relative;
         }
 
         header h1 {
             color: #FFD700;
             margin: 0;
             font-size: 36px;
+        }
+
+        .blackjack-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #FFD700;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .blackjack-indicator img {
+            width: 30px;
+            height: 30px;
         }
 
         section {
@@ -38,12 +57,6 @@
         section h2 {
             color: #FFD700;
             margin-bottom: 20px;
-        }
-
-        section p {
-            font-size: 18px;
-            margin: 10px 0;
-            color: #DDD;
         }
 
         button {
@@ -63,36 +76,12 @@
             transform: scale(1.05);
         }
 
-        .dropdown {
-            margin-top: 15px;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-        }
-
-        .clan-size-input {
+        .tab {
             display: none;
-            margin: 15px auto;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            width: 50%;
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            transform: scale(0.95);
         }
 
-        .clan-size-input.show {
+        .active-tab {
             display: block;
-            opacity: 1;
-            transform: scale(1);
         }
 
         footer {
@@ -108,72 +97,46 @@
             color: white;
             margin: 0;
         }
+
+        #blackjack-game {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #blackjack-game p {
+            font-size: 18px;
+            color: #FFD700;
+        }
     </style>
 </head>
 <body>
     <header>
         <img src="https://via.placeholder.com/150?text=EasyRust+Logo" alt="EasyRust Logo" style="width: 150px; margin-bottom: 10px;">
-        <h1 style="font-family: 'Georgia', serif; font-size: 42px;">EasyRust</h1>
+        <h1>EasyRust</h1>
         <p>A Clan for Your Clan! Order Services for Your Squad Base</p>
+        <div class="blackjack-indicator" onclick="showTab('blackjack')">
+            <img src="https://via.placeholder.com/30?text=♠" alt="Blackjack">
+            <span>Blackjack</span>
+        </div>
     </header>
 
-    <section id="resources">
+    <section id="resources" class="tab active-tab">
         <h2>Order Resources</h2>
         <p>Metal, stone, HQM, sulfur, guns, diesel, etc.</p>
         <p>Fastest delivery guaranteed!</p>
-        <select class="dropdown" id="resourcesServerType">
-            <option value="vanilla">Vanilla</option>
-            <option value="2x">2x</option>
-            <option value="modded">Modded</option>
-        </select>
-        <select class="dropdown" id="resourcesGroupSize" onchange="handleClanOption('resources')">
-            <option value="solo">Solo</option>
-            <option value="duo">Duo</option>
-            <option value="quad">Quad</option>
-            <option value="clan">Clan</option>
-        </select>
-        <input type="number" id="clanSizeResources" class="clan-size-input" placeholder="Enter clan size" />
-        <button onclick="redirectToPaypal('resources', 'Order Resources - Custom Amount')">Order Now (€15 per delivery)</button>
+        <button onclick="alert('Order resources!')">Order Now (Custom Amount)</button>
     </section>
 
-    <section id="raid-protect">
-        <h2>Raid Protect</h2>
-        <p>Protect your base from offline raids!</p>
-        <p>A squad stays online while you're away.</p>
-        <select class="dropdown" id="raidServerType">
-            <option value="vanilla">Vanilla</option>
-            <option value="2x">2x</option>
-            <option value="modded">Modded</option>
-        </select>
-        <select class="dropdown" id="raidGroupSize" onchange="handleClanOption('raid')">
-            <option value="solo">Solo</option>
-            <option value="duo">Duo</option>
-            <option value="quad">Quad</option>
-            <option value="clan">Clan</option>
-        </select>
-        <input type="number" id="clanSizeRaid" class="clan-size-input" placeholder="Enter clan size" />
-        <button onclick="redirectToPaypal('raid', 'Raid Protect - €20 per hour')">Order Now (€20 per hour)</button>
-    </section>
-
-    <section id="daily-upkeep">
-        <h2>Daily Upkeep</h2>
-        <p>Never worry about decay again.</p>
-        <p>Daily logins for:</p>
-        <select class="dropdown" id="upkeepServerType">
-            <option value="vanilla">Vanilla</option>
-            <option value="2x">2x</option>
-            <option value="modded">Modded</option>
-        </select>
-        <select class="dropdown" id="upkeepGroupSize" onchange="handleClanOption('upkeep')">
-            <option value="solo">Solo</option>
-            <option value="duo">Duo</option>
-            <option value="quad">Quad</option>
-            <option value="clan">Clan</option>
-        </select>
-        <input type="number" id="clanSizeUpkeep" class="clan-size-input" placeholder="Enter clan size" />
-        <button onclick="redirectToPaypal('upkeep', 'Daily Upkeep - €5 per day')">1 Day (€5)</button>
-        <button onclick="redirectToPaypal('upkeep', 'Weekly Upkeep - €15 per week')">7 Days (€15)</button>
-        <button onclick="redirectToPaypal('upkeep', 'Monthly Upkeep - €50 per month')">30 Days (€50)</button>
+    <section id="blackjack" class="tab">
+        <h2>Blackjack</h2>
+        <div id="blackjack-game">
+            <p id="blackjack-status">Press "Start Game" to begin playing!</p>
+            <button onclick="startBlackjack()">Start Game</button>
+            <button onclick="hit()">Hit</button>
+            <button onclick="stand()">Stand</button>
+        </div>
     </section>
 
     <footer>
@@ -181,36 +144,84 @@
     </footer>
 
     <script>
-        function redirectToPaypal(section, service) {
-            const serverType = document.getElementById(`${section}ServerType`).value;
-            const groupSize = document.getElementById(`${section}GroupSize`).value;
-            let clanSize = '';
-
-            if (groupSize === 'clan') {
-                const clanSizeInput = document.getElementById(`clanSize${section.charAt(0).toUpperCase() + section.slice(1)}`);
-                clanSize = clanSizeInput.value;
-                if (!clanSize) {
-                    alert('Please enter the size of your clan.');
-                    return;
-                }
-            }
-
-            alert(`You have selected: ${service}.
-Server Type: ${serverType}
-Group Size: ${groupSize} ${clanSize ? '(Clan size: ' + clanSize + ')' : ''}
-Redirecting to PayPal...`);
-            window.location.href = 'https://paypal.me/ZTavern1';
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active-tab'));
+            document.getElementById(tabId).classList.add('active-tab');
         }
 
-        function handleClanOption(section) {
-            const groupSize = document.getElementById(`${section}GroupSize`).value;
-            const clanSizeInput = document.getElementById(`clanSize${section.charAt(0).toUpperCase() + section.slice(1)}`);
+        let playerHand = [];
+        let dealerHand = [];
 
-            if (groupSize === 'clan') {
-                clanSizeInput.classList.add('show');
-            } else {
-                clanSizeInput.classList.remove('show');
+        function startBlackjack() {
+            playerHand = [getCard(), getCard()];
+            dealerHand = [getCard()];
+            updateStatus();
+        }
+
+        function getCard() {
+            const suits = ['♠', '♥', '♦', '♣'];
+            const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
+            const value = values[Math.floor(Math.random() * values.length)];
+            const suit = suits[Math.floor(Math.random() * suits.length)];
+            return { value, suit };
+        }
+
+        function handValue(hand) {
+            let value = 0;
+            let aces = 0;
+
+            hand.forEach(card => {
+                if (typeof card.value === 'number') {
+                    value += card.value;
+                } else if (card.value === 'A') {
+                    aces += 1;
+                    value += 11;
+                } else {
+                    value += 10;
+                }
+            });
+
+            while (value > 21 && aces > 0) {
+                value -= 10;
+                aces -= 1;
             }
+
+            return value;
+        }
+
+        function updateStatus() {
+            const status = document.getElementById('blackjack-status');
+            status.textContent = `Your hand: ${playerHand.map(c => c.value + c.suit).join(', ')} (Value: ${handValue(playerHand)}) \n Dealer hand: ${dealerHand.map(c => c.value + c.suit).join(', ')} (Value: ${handValue(dealerHand)})`;
+        }
+
+        function hit() {
+            playerHand.push(getCard());
+            if (handValue(playerHand) > 21) {
+                alert('Bust! You lose.');
+                startBlackjack();
+            } else {
+                updateStatus();
+            }
+        }
+
+        function stand() {
+            while (handValue(dealerHand) < 17) {
+                dealerHand.push(getCard());
+            }
+
+            const playerValue = handValue(playerHand);
+            const dealerValue = handValue(dealerHand);
+
+            if (dealerValue > 21 || playerValue > dealerValue) {
+                alert('You win!');
+            } else if (dealerValue === playerValue) {
+                alert('It is a tie!');
+            } else {
+                alert('You lose!');
+            }
+
+            startBlackjack();
         }
     </script>
 </body>
