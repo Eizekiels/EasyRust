@@ -103,14 +103,14 @@
             <option value="2x">2x</option>
             <option value="modded">Modded</option>
         </select>
-        <select class="dropdown" id="resourcesGroupSize" onchange="handleClanOption(this)">
+        <select class="dropdown" id="resourcesGroupSize" onchange="handleClanOption('resources')">
             <option value="solo">Solo</option>
             <option value="duo">Duo</option>
             <option value="quad">Quad</option>
             <option value="clan">Clan</option>
         </select>
         <input type="number" id="clanSizeResources" placeholder="Enter clan size" style="display: none;" />
-        <button onclick="redirectToPaypal('Order Resources - €15 per delivery')">Order Now (€15 per delivery)</button>
+        <button onclick="redirectToPaypal('resources', 'Order Resources - €15 per delivery')">Order Now (€15 per delivery)</button>
     </section>
 
     <section id="raid-protect">
@@ -122,14 +122,14 @@
             <option value="2x">2x</option>
             <option value="modded">Modded</option>
         </select>
-        <select class="dropdown" id="raidGroupSize" onchange="handleClanOption(this)">
+        <select class="dropdown" id="raidGroupSize" onchange="handleClanOption('raid')">
             <option value="solo">Solo</option>
             <option value="duo">Duo</option>
             <option value="quad">Quad</option>
             <option value="clan">Clan</option>
         </select>
         <input type="number" id="clanSizeRaid" placeholder="Enter clan size" style="display: none;" />
-        <button onclick="redirectToPaypal('Raid Protect - €20 per hour')">Order Now (€20 per hour)</button>
+        <button onclick="redirectToPaypal('raid', 'Raid Protect - €20 per hour')">Order Now (€20 per hour)</button>
     </section>
 
     <section id="daily-upkeep">
@@ -141,16 +141,16 @@
             <option value="2x">2x</option>
             <option value="modded">Modded</option>
         </select>
-        <select class="dropdown" id="upkeepGroupSize" onchange="handleClanOption(this)">
+        <select class="dropdown" id="upkeepGroupSize" onchange="handleClanOption('upkeep')">
             <option value="solo">Solo</option>
             <option value="duo">Duo</option>
             <option value="quad">Quad</option>
             <option value="clan">Clan</option>
         </select>
         <input type="number" id="clanSizeUpkeep" placeholder="Enter clan size" style="display: none;" />
-        <button onclick="redirectToPaypal('Daily Upkeep - €5 per day')">1 Day (€5)</button>
-        <button onclick="redirectToPaypal('Weekly Upkeep - €15 per week')">7 Days (€15)</button>
-        <button onclick="redirectToPaypal('Monthly Upkeep - €50 per month')">30 Days (€50)</button>
+        <button onclick="redirectToPaypal('upkeep', 'Daily Upkeep - €5 per day')">1 Day (€5)</button>
+        <button onclick="redirectToPaypal('upkeep', 'Weekly Upkeep - €15 per week')">7 Days (€15)</button>
+        <button onclick="redirectToPaypal('upkeep', 'Monthly Upkeep - €50 per month')">30 Days (€50)</button>
     </section>
 
     <footer>
@@ -158,14 +158,13 @@
     </footer>
 
     <script>
-        function redirectToPaypal(service) {
-            const serverType = document.querySelector(`#${service.split(' ')[0].toLowerCase()}ServerType`).value;
-            const groupSizeElement = document.querySelector(`#${service.split(' ')[0].toLowerCase()}GroupSize`);
-            const groupSize = groupSizeElement.value;
+        function redirectToPaypal(section, service) {
+            const serverType = document.getElementById(`${section}ServerType`).value;
+            const groupSize = document.getElementById(`${section}GroupSize`).value;
             let clanSize = '';
 
             if (groupSize === 'clan') {
-                const clanSizeInput = document.querySelector(`#clanSize${service.split(' ')[0]}`);
+                const clanSizeInput = document.getElementById(`clanSize${section.charAt(0).toUpperCase() + section.slice(1)}`);
                 clanSize = clanSizeInput.value;
                 if (!clanSize) {
                     alert('Please enter the size of your clan.');
@@ -180,9 +179,11 @@ Redirecting to PayPal...`);
             window.location.href = 'https://paypal.me/ZTavern1';
         }
 
-        function handleClanOption(selectElement) {
-            const clanSizeInput = document.querySelector(`#clanSize${selectElement.id.replace('GroupSize', '')}`);
-            if (selectElement.value === 'clan') {
+        function handleClanOption(section) {
+            const groupSize = document.getElementById(`${section}GroupSize`).value;
+            const clanSizeInput = document.getElementById(`clanSize${section.charAt(0).toUpperCase() + section.slice(1)}`);
+
+            if (groupSize === 'clan') {
                 clanSizeInput.style.display = 'block';
             } else {
                 clanSizeInput.style.display = 'none';
