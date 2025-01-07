@@ -221,11 +221,12 @@
         <p>A Clan for Your Clan! Order Services for Your Squad Base</p>
     </header>
 
-    <nav>
-        <a href="#" class="dropdown" onclick="toggleServicesDropdown(event)">Services ▼</a>
+    <nav><a href="#resources">Resources</a>
+        <a href="#raid-protect">Raid Protect</a>
+        <a href="#daily-upkeep">Daily Upkeep</a>
+        <a href="#electric-tips">Electric & Tips</a>
         <a href="#about">About</a>
-        <a href="#" onclick="showContactForm(event)">Contact</a>
-    </nav>
+        <a href="#" onclick="showContactForm(event)">Contact</a></nav>
     <section id="about">
         <h2>About EasyRust Services</h2>
         <p>EasyRust Services is dedicated to providing high-quality and reliable support for Rust players. Our mission is to enhance your gaming experience by taking care of the essential tasks, so you can focus on enjoying the game.</p>
@@ -241,13 +242,80 @@
     </section>
 
 
-    
+    <section id="resources">
+        <h2>Order Resources</h2>
+        <p>Metal, stone, HQM, sulfur, guns, diesel, etc.</p>
+        <p>Fastest delivery guaranteed!</p>
+        <select id="resourcesServerType">
+            <option value="vanilla">Vanilla</option>
+            <option value="2x">2x</option>
+            <option value="modded">Modded</option>
+        </select>
+        <select id="resourcesGroupSize">
+            <option value="solo">Solo</option>
+            <option value="duo">Duo</option>
+            <option value="quad">Quad</option>
+            <option value="clan">Clan</option>
+        </select>
+        <button onclick="alert('Order Resources!')">Order Now (Custom Amount)</button>
+    </section>
 
-    
+    <section id="raid-protect">
+        <h2>Raid Protect</h2>
+        <p>Protect your base from offline raids!</p>
+        <p>A squad stays online while you're away.</p>
+        <select id="raidServerType">
+            <option value="vanilla">Vanilla</option>
+            <option value="2x">2x</option>
+            <option value="modded">Modded</option>
+        </select>
+        <select id="raidGroupSize">
+            <option value="solo">Solo</option>
+            <option value="duo">Duo</option>
+            <option value="quad">Quad</option>
+            <option value="clan">Clan</option>
+        </select>
+        <button onclick="alert('Raid Protect - €20 per hour')">Order Now (€20 per hour)</button>
+    </section>
 
-    
+    <section id="daily-upkeep">
+        <h2>Daily Upkeep</h2>
+        <p>Never worry about decay again.</p>
+        <p>Daily logins for:</p>
+        <select id="upkeepServerType">
+            <option value="vanilla">Vanilla</option>
+            <option value="2x">2x</option>
+            <option value="modded">Modded</option>
+        </select>
+        <select id="upkeepGroupSize">
+            <option value="solo">Solo</option>
+            <option value="duo">Duo</option>
+            <option value="quad">Quad</option>
+            <option value="clan">Clan</option>
+        </select>
+        <button onclick="alert('Daily Upkeep - €5 per day')">1 Day (€5)</button>
+        <button onclick="alert('Weekly Upkeep - €15 per week')">7 Days (€15)</button>
+        <button onclick="alert('Monthly Upkeep - €50 per month')">30 Days (€50)</button>
+    </section>
 
-    
+    <section id="electric-tips">
+        <h2>Electric & Tips</h2>
+        <p>Electric circuit setup (motion-sensor turrets, super smelters, etc.)</p>
+        <p>Learn the deepest knowledge of Rust!</p>
+        <select id="electricServerType">
+            <option value="vanilla">Vanilla</option>
+            <option value="2x">2x</option>
+            <option value="modded">Modded</option>
+        </select>
+        <select id="electricGroupSize">
+            <option value="solo">Solo</option>
+            <option value="duo">Duo</option>
+            <option value="quad">Quad</option>
+            <option value="clan">Clan</option>
+        </select>
+        <button onclick="alert('Electric Setup - €25 per project')">Order Electric Setup (€25)</button>
+        <button onclick="alert('Tips & Tricks - €50 per session')">Order Tips & Tricks (€50 per session)</button>
+    </section>
 
     
 
@@ -255,14 +323,7 @@
 
 
 
-    <div id="servicesDropdown" style="display: none; position: absolute; background-color: #2e3b44; padding: 10px 20px; border: 2px solid #D4AF37; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8); z-index: 1000; opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease;">
-        <ul style="list-style: none; padding: 0; margin: 0;">
-            <li><a href="#" onclick="showInfoBox('Resources')" style="color: #D4AF37; text-decoration: none; display: block; padding: 10px; transition: background-color 0.3s ease;">Resources</a></li>
-            <li><a href="#" onclick="showInfoBox('Raid Protect')" style="color: #D4AF37; text-decoration: none; display: block; padding: 10px; transition: background-color 0.3s ease;">Raid Protect</a></li>
-            <li><a href="#" onclick="showInfoBox('Daily Upkeep')" style="color: #D4AF37; text-decoration: none; display: block; padding: 10px; transition: background-color 0.3s ease;">Daily Upkeep</a></li>
-            <li><a href="#" onclick="showInfoBox('Electric & Tips')" style="color: #D4AF37; text-decoration: none; display: block; padding: 10px; transition: background-color 0.3s ease;">Electric & Tips</a></li>
-        </ul>
-    </div><footer>
+    <footer>
         <a href="#" onclick="showInfoModal('FAQ', 'Here is the FAQ content')">FAQ</a>
         <a href="#" onclick="showInfoModal('Legal Disclaimer', 'EasyRust Services operates independently and is not affiliated with or endorsed by Facepunch Studios. All transactions are final.')">Legal Disclaimer</a>
         <a href="#" onclick="showInfoModal('Terms of Use', 'By accessing or using EasyRust Services, you agree to be bound by these terms and conditions.')">Terms of Use</a>
@@ -282,127 +343,33 @@
     </div>
 
     <script>
-        function toggleServicesDropdown(event) {
+        function showContactForm(event) {
             event.preventDefault();
-            const dropdown = document.getElementById('servicesDropdown');
-            const servicesLink = document.querySelector('.dropdown');
-            const rect = servicesLink.getBoundingClientRect();
-            dropdown.style.left = rect.left + window.scrollX + 'px';
-            dropdown.style.top = rect.bottom + window.scrollY + 'px';
-
-            if (dropdown.style.opacity === '1') {
-                dropdown.style.opacity = '0';
-                dropdown.style.transform = 'translateY(-10px)';
-                setTimeout(() => {
-                    dropdown.style.display = 'none';
-                }, 300);
-            } else {
-                dropdown.style.display = 'block';
-                setTimeout(() => {
-                    dropdown.style.opacity = '1';
-                    dropdown.style.transform = 'translateY(0)';
-                }, 10);
-            }
+            document.getElementById('contactForm').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
         }
 
-        document.querySelector('.dropdown').addEventListener('mouseover', () => {
-            const rect = document.querySelector('.dropdown').getBoundingClientRect();
-            const dropdown = document.getElementById('servicesDropdown');
-            dropdown.style.left = rect.left + window.scrollX + 'px';
-            dropdown.style.top = rect.bottom + window.scrollY + 'px';
-            dropdown.style.display = 'block';
-            setTimeout(() => {
-                dropdown.style.opacity = '1';
-                dropdown.style.transform = 'translateY(0)';
-            }, 10);
-        });
-
-        document.querySelector('.dropdown').addEventListener('mouseleave', () => {
-            const dropdown = document.getElementById('servicesDropdown');
-            setTimeout(() => {
-                if (!dropdown.matches(':hover')) {
-                    dropdown.style.opacity = '0';
-                    dropdown.style.transform = 'translateY(-10px)';
-                    setTimeout(() => {
-                        dropdown.style.display = 'none';
-                    }, 300);
-                }
-            }, 300);
-        });
-
-        document.getElementById('servicesDropdown').addEventListener('mouseleave', () => {
-            const dropdown = document.getElementById('servicesDropdown');
-            dropdown.style.opacity = '0';
-            dropdown.style.transform = 'translateY(-10px)';
-            setTimeout(() => {
-                dropdown.style.display = 'none';
-            }, 300);
-        });
+        function hideContactForm() {
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
     </script>
-<div id="infoBox" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background-color: #2e3b44; padding: 20px; border: 2px solid #D4AF37; border-radius: 10px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.9); z-index: 1000; transition: all 0.3s ease;">
-        <h2 id="infoBoxTitle" style="color: #D4AF37;"></h2>
-        <p id="infoBoxContent" style="color: white;"></p>
-        <button onclick="hideInfoBox()" style="background-color: #D4AF37; color: #1b1f23; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Close</button>
+    <div class="info-modal" id="infoModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #2e3b44; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); z-index: 1000;">
+        <h2 id="infoModalTitle" style="color: #D4AF37;"></h2>
+        <p id="infoModalContent" style="color: white;"></p>
+        <button style="background-color: #D4AF37; color: #1b1f23; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;" onclick="closeInfoModal()">Close</button>
     </div>
-
     <script>
-        function showInfoBox(title) {
-            const infoBox = document.getElementById('infoBox');
-            const infoBoxTitle = document.getElementById('infoBoxTitle');
-            const infoBoxContent = document.getElementById('infoBoxContent');
-
-            infoBoxTitle.innerText = title;
-            infoBoxContent.innerText = `${title} details will be displayed here.`;
-
-            infoBox.style.display = 'block';
-            setTimeout(() => {
-                infoBox.style.opacity = '1';
-                infoBox.style.transform = 'translate(-50%, -50%) scale(1)';
-            }, 10);
+        function showInfoModal(title, content) {
+            document.getElementById('infoModalTitle').innerText = title;
+            document.getElementById('infoModalContent').innerText = content;
+            document.getElementById('infoModal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
         }
-
-        function hideInfoBox() {
-            const infoBox = document.getElementById('infoBox');
-            infoBox.style.opacity = '0';
-            infoBox.style.transform = 'translate(-50%, -50%) scale(0.9)';
-            setTimeout(() => {
-                infoBox.style.display = 'none';
-            }, 300);
+        function closeInfoModal() {
+            document.getElementById('infoModal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
         }
-
-        const servicesDropdown = document.getElementById('servicesDropdown');
-        const servicesLink = document.querySelector('.dropdown');
-
-        servicesLink.addEventListener('mouseover', () => {
-            const rect = servicesLink.getBoundingClientRect();
-            servicesDropdown.style.left = rect.left + window.scrollX + 'px';
-            servicesDropdown.style.top = rect.bottom + window.scrollY + 'px';
-            servicesDropdown.style.display = 'block';
-            setTimeout(() => {
-                servicesDropdown.style.opacity = '1';
-                servicesDropdown.style.transform = 'translateY(0)';
-            }, 10);
-        });
-
-        servicesLink.addEventListener('mouseleave', () => {
-            setTimeout(() => {
-                if (!servicesDropdown.matches(':hover')) {
-                    servicesDropdown.style.opacity = '0';
-                    servicesDropdown.style.transform = 'translateY(-10px)';
-                    setTimeout(() => {
-                        servicesDropdown.style.display = 'none';
-                    }, 300);
-                }
-            }, 300);
-        });
-
-        servicesDropdown.addEventListener('mouseleave', () => {
-            servicesDropdown.style.opacity = '0';
-            servicesDropdown.style.transform = 'translateY(-10px)';
-            setTimeout(() => {
-                servicesDropdown.style.display = 'none';
-            }, 300);
-        });
     </script>
 </body>
 </html>
