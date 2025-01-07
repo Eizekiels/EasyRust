@@ -146,6 +146,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
             animation: fadeIn 0.5s ease forwards;
+            z-index: 1000;
         }
 
         .contact-form h2 {
@@ -203,7 +204,7 @@
         <a href="#raid-protect">Raid Protect</a>
         <a href="#daily-upkeep">Daily Upkeep</a>
         <a href="#electric-tips">Electric & Tips</a>
-        <a href="#" onclick="showContactForm()">Contact</a>
+        <a href="#" onclick="showContactForm(event)">Contact</a>
     </nav>
 
     <section id="resources">
@@ -301,7 +302,7 @@
     </footer>
 
     <div class="overlay" id="overlay" onclick="hideContactForm()"></div>
-    <div class="contact-form" id="contactForm">
+    <div class="contact-form" id="contactForm" onclick="event.stopPropagation()">
         <h2>Contact Us</h2>
         <form action="mailto:eizekiels@gmail.com" method="post" enctype="text/plain">
             <input type="text" name="name" placeholder="Your Name" required>
@@ -313,7 +314,8 @@
     </div>
 
     <script>
-        function showContactForm() {
+        function showContactForm(event) {
+            event.preventDefault();
             document.getElementById('contactForm').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
         }
