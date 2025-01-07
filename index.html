@@ -257,10 +257,10 @@
 
     <div id="servicesDropdown" style="display: none; position: absolute; background-color: #2e3b44; padding: 10px 20px; border: 2px solid #D4AF37; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8); z-index: 1000; opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease;">
         <ul style="list-style: none; padding: 0; margin: 0;">
-            <li><a href="#resources" style="color: #D4AF37; text-decoration: none; display: block; padding: 10px;">Resources</a></li>
-            <li><a href="#raid-protect" style="color: #D4AF37; text-decoration: none; display: block; padding: 10px;">Raid Protect</a></li>
-            <li><a href="#daily-upkeep" style="color: #D4AF37; text-decoration: none; display: block; padding: 10px;">Daily Upkeep</a></li>
-            <li><a href="#electric-tips" style="color: #D4AF37; text-decoration: none; display: block; padding: 10px;">Electric & Tips</a></li>
+            <li><a href="#" onclick="showInfoBox('Resources')" style="color: #D4AF37; text-decoration: none; display: block; padding: 10px; transition: background-color 0.3s ease;">Resources</a></li>
+            <li><a href="#" onclick="showInfoBox('Raid Protect')" style="color: #D4AF37; text-decoration: none; display: block; padding: 10px; transition: background-color 0.3s ease;">Raid Protect</a></li>
+            <li><a href="#" onclick="showInfoBox('Daily Upkeep')" style="color: #D4AF37; text-decoration: none; display: block; padding: 10px; transition: background-color 0.3s ease;">Daily Upkeep</a></li>
+            <li><a href="#" onclick="showInfoBox('Electric & Tips')" style="color: #D4AF37; text-decoration: none; display: block; padding: 10px; transition: background-color 0.3s ease;">Electric & Tips</a></li>
         </ul>
     </div><footer>
         <a href="#" onclick="showInfoModal('FAQ', 'Here is the FAQ content')">FAQ</a>
@@ -305,8 +305,73 @@
             }
         }
 
-        const servicesLink = document.querySelector('.dropdown');
+        document.querySelector('.dropdown').addEventListener('mouseover', () => {
+            const rect = document.querySelector('.dropdown').getBoundingClientRect();
+            const dropdown = document.getElementById('servicesDropdown');
+            dropdown.style.left = rect.left + window.scrollX + 'px';
+            dropdown.style.top = rect.bottom + window.scrollY + 'px';
+            dropdown.style.display = 'block';
+            setTimeout(() => {
+                dropdown.style.opacity = '1';
+                dropdown.style.transform = 'translateY(0)';
+            }, 10);
+        });
+
+        document.querySelector('.dropdown').addEventListener('mouseleave', () => {
+            const dropdown = document.getElementById('servicesDropdown');
+            setTimeout(() => {
+                if (!dropdown.matches(':hover')) {
+                    dropdown.style.opacity = '0';
+                    dropdown.style.transform = 'translateY(-10px)';
+                    setTimeout(() => {
+                        dropdown.style.display = 'none';
+                    }, 300);
+                }
+            }, 300);
+        });
+
+        document.getElementById('servicesDropdown').addEventListener('mouseleave', () => {
+            const dropdown = document.getElementById('servicesDropdown');
+            dropdown.style.opacity = '0';
+            dropdown.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+                dropdown.style.display = 'none';
+            }, 300);
+        });
+    </script>
+<div id="infoBox" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background-color: #2e3b44; padding: 20px; border: 2px solid #D4AF37; border-radius: 10px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.9); z-index: 1000; transition: all 0.3s ease;">
+        <h2 id="infoBoxTitle" style="color: #D4AF37;"></h2>
+        <p id="infoBoxContent" style="color: white;"></p>
+        <button onclick="hideInfoBox()" style="background-color: #D4AF37; color: #1b1f23; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Close</button>
+    </div>
+
+    <script>
+        function showInfoBox(title) {
+            const infoBox = document.getElementById('infoBox');
+            const infoBoxTitle = document.getElementById('infoBoxTitle');
+            const infoBoxContent = document.getElementById('infoBoxContent');
+
+            infoBoxTitle.innerText = title;
+            infoBoxContent.innerText = `${title} details will be displayed here.`;
+
+            infoBox.style.display = 'block';
+            setTimeout(() => {
+                infoBox.style.opacity = '1';
+                infoBox.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 10);
+        }
+
+        function hideInfoBox() {
+            const infoBox = document.getElementById('infoBox');
+            infoBox.style.opacity = '0';
+            infoBox.style.transform = 'translate(-50%, -50%) scale(0.9)';
+            setTimeout(() => {
+                infoBox.style.display = 'none';
+            }, 300);
+        }
+
         const servicesDropdown = document.getElementById('servicesDropdown');
+        const servicesLink = document.querySelector('.dropdown');
 
         servicesLink.addEventListener('mouseover', () => {
             const rect = servicesLink.getBoundingClientRect();
@@ -320,17 +385,15 @@
         });
 
         servicesLink.addEventListener('mouseleave', () => {
-            servicesDropdown.style.opacity = '0';
-            servicesDropdown.style.transform = 'translateY(-10px)';
             setTimeout(() => {
-                servicesDropdown.style.display = 'none';
+                if (!servicesDropdown.matches(':hover')) {
+                    servicesDropdown.style.opacity = '0';
+                    servicesDropdown.style.transform = 'translateY(-10px)';
+                    setTimeout(() => {
+                        servicesDropdown.style.display = 'none';
+                    }, 300);
+                }
             }, 300);
-        });
-
-        servicesDropdown.addEventListener('mouseover', () => {
-            servicesDropdown.style.display = 'block';
-            servicesDropdown.style.opacity = '1';
-            servicesDropdown.style.transform = 'translateY(0)';
         });
 
         servicesDropdown.addEventListener('mouseleave', () => {
