@@ -216,7 +216,7 @@
 </head>
 <body>
     <header>
-        <img src="https://i.ibb.co/q73xCvC/Easy-Rust-logo-cleaned-transparent.png" alt="EasyRust Logo" style="width: 200px; margin-bottom: 10px;">
+        <img src="https://i.ibb.co/q73xCvC/Easy-Rust-logo-cleaned-transparent.png" alt="EasyRust Logo" style="width: 250px; margin-bottom: 10px;">
         <h1>EasyRust Services</h1>
         <p>A Clan for Your Clan! Order Services for Your Squad Base</p>
     </header>
@@ -317,32 +317,18 @@
         <button onclick="alert('Tips & Tricks - €50 per session')">Order Tips & Tricks (€50 per session)</button>
     </section>
 
-    <section class="faq-section" id="faq">
-        <h2>FAQ</h2>
-        <p><strong>Q:</strong> Is this service affiliated with the game developers?<br><strong>A:</strong> No, this is an independent service provided by players for players.</p>
-        <p><strong>Q:</strong> What happens if I’m banned from the server?<br><strong>A:</strong> Unfortunately, we cannot offer refunds in such cases.</p>
-        <p><strong>Q:</strong> How are resources delivered?<br><strong>A:</strong> Resources are delivered via in-game trades or drops, depending on the server rules.</p>
-        <p><strong>Q:</strong> Is the service safe and fair?<br><strong>A:</strong> Yes, all services adhere to the rules of the servers we operate on.</p>
-    </section>
+    
 
-    <section class="faq-section" id="legal">
-        <h2>Legal Disclaimer</h2>
-        <p>EasyRust Services operates independently and is not affiliated with or endorsed by Facepunch Studios or any official Rust entities. By using our services, you acknowledge that we are not responsible for any actions taken by server administrators or the game developers. Use of our services is at your own risk, and we adhere to the terms and conditions of the servers we operate on. All transactions are final and non-refundable.</p>
-    </section>    <section class="faq-section" id="terms-of-use">
-        <h2>Terms of Use</h2>
-        <p>By accessing or using EasyRust Services, you agree to be bound by these terms and conditions. Failure to adhere to these terms may result in suspension or termination of your services without refund.</p>
-        <p><strong>Usage Policy:</strong> Our services are intended for personal, non-commercial use only. Any misuse of services, including unauthorized reselling, will result in immediate termination.</p>
-        <p><strong>Liability:</strong> EasyRust Services is not liable for any damages or losses resulting from your use of our services, including in-game bans or penalties imposed by server administrators.</p>
-        <p><strong>Refunds:</strong> All purchases are final and non-refundable, except in cases where we are unable to provide the service as agreed.</p>
-        <p>For more details, contact us through the provided contact form.</p>
-    </section>
+        
 
 
 
-    <footer><a href="#faq">FAQ</a>
-        <a href="#legal">Legal Disclaimer</a>
-        <a href="#terms-of-use">Terms of Use</a>
-        <p>&copy; 2025 EasyRust | All Rights Reserved</p></footer>
+    <footer>
+        <a href="#" onclick="showInfoModal('FAQ', 'Here is the FAQ content')">FAQ</a>
+        <a href="#" onclick="showInfoModal('Legal Disclaimer', 'EasyRust Services operates independently and is not affiliated with or endorsed by Facepunch Studios. All transactions are final.')">Legal Disclaimer</a>
+        <a href="#" onclick="showInfoModal('Terms of Use', 'By accessing or using EasyRust Services, you agree to be bound by these terms and conditions.')">Terms of Use</a>
+        <p>&copy; 2025 EasyRust | All Rights Reserved</p>
+    </footer>
 
     <div class="overlay" id="overlay" onclick="hideContactForm()"></div>
     <div class="contact-form" id="contactForm" onclick="event.stopPropagation()">
@@ -365,6 +351,23 @@
 
         function hideContactForm() {
             document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+    <div class="info-modal" id="infoModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #2e3b44; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); z-index: 1000;">
+        <h2 id="infoModalTitle" style="color: #D4AF37;"></h2>
+        <p id="infoModalContent" style="color: white;"></p>
+        <button style="background-color: #D4AF37; color: #1b1f23; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;" onclick="closeInfoModal()">Close</button>
+    </div>
+    <script>
+        function showInfoModal(title, content) {
+            document.getElementById('infoModalTitle').innerText = title;
+            document.getElementById('infoModalContent').innerText = content;
+            document.getElementById('infoModal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+        function closeInfoModal() {
+            document.getElementById('infoModal').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
     </script>
