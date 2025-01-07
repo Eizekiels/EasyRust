@@ -73,6 +73,28 @@
             color: white;
         }
 
+        .clan-size-input {
+            display: none;
+            margin: 15px auto;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            width: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: scale(0.95);
+        }
+
+        .clan-size-input.show {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
         footer {
             background-color: rgba(0, 0, 0, 0.7);
             text-align: center;
@@ -109,7 +131,7 @@
             <option value="quad">Quad</option>
             <option value="clan">Clan</option>
         </select>
-        <input type="number" id="clanSizeResources" placeholder="Enter clan size" style="display: none;" />
+        <input type="number" id="clanSizeResources" class="clan-size-input" placeholder="Enter clan size" />
         <button onclick="redirectToPaypal('resources', 'Order Resources - €15 per delivery')">Order Now (€15 per delivery)</button>
     </section>
 
@@ -128,7 +150,7 @@
             <option value="quad">Quad</option>
             <option value="clan">Clan</option>
         </select>
-        <input type="number" id="clanSizeRaid" placeholder="Enter clan size" style="display: none;" />
+        <input type="number" id="clanSizeRaid" class="clan-size-input" placeholder="Enter clan size" />
         <button onclick="redirectToPaypal('raid', 'Raid Protect - €20 per hour')">Order Now (€20 per hour)</button>
     </section>
 
@@ -147,7 +169,7 @@
             <option value="quad">Quad</option>
             <option value="clan">Clan</option>
         </select>
-        <input type="number" id="clanSizeUpkeep" placeholder="Enter clan size" style="display: none;" />
+        <input type="number" id="clanSizeUpkeep" class="clan-size-input" placeholder="Enter clan size" />
         <button onclick="redirectToPaypal('upkeep', 'Daily Upkeep - €5 per day')">1 Day (€5)</button>
         <button onclick="redirectToPaypal('upkeep', 'Weekly Upkeep - €15 per week')">7 Days (€15)</button>
         <button onclick="redirectToPaypal('upkeep', 'Monthly Upkeep - €50 per month')">30 Days (€50)</button>
@@ -184,9 +206,9 @@ Redirecting to PayPal...`);
             const clanSizeInput = document.getElementById(`clanSize${section.charAt(0).toUpperCase() + section.slice(1)}`);
 
             if (groupSize === 'clan') {
-                clanSizeInput.style.display = 'block';
+                clanSizeInput.classList.add('show');
             } else {
-                clanSizeInput.style.display = 'none';
+                clanSizeInput.classList.remove('show');
             }
         }
     </script>
