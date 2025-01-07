@@ -82,11 +82,11 @@
         button {
             background-color: #10141b;
             color: #D4AF37;
-            padding: 15px 30px;
-            font-size: 16px;
+            padding: 20px 40px;
+            font-size: 18px;
             font-family: 'Verdana', sans-serif;
             border: 2px solid #D4AF37;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             margin: 10px;
             transition: all 0.3s ease;
@@ -96,7 +96,7 @@
         button:hover {
             background-color: #D4AF37;
             color: #1b1f23;
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         button:active {
@@ -227,20 +227,6 @@
         <a href="#electric-tips">Electric & Tips</a>
         <a href="#about">About</a>
         <a href="#" onclick="showContactForm(event)">Contact</a></nav>
-    <section id="about">
-        <h2>About EasyRust Services</h2>
-        <p>EasyRust Services is dedicated to providing high-quality and reliable support for Rust players. Our mission is to enhance your gaming experience by taking care of the essential tasks, so you can focus on enjoying the game.</p>
-        <p><strong>What We Offer:</strong> From gathering critical resources to protecting your base from raids, we handle it all. Our services include daily upkeep, electric circuit setup, tips and tricks, and custom orders tailored to your needs.</p>
-        <p><strong>Why Choose Us?</strong></p>
-        <ul style="text-align: left; margin: auto; max-width: 800px;">
-            <li>Save time and effort by letting us manage the repetitive tasks.</li>
-            <li>Enjoy peace of mind with our expert base protection services.</li>
-            <li>Learn valuable tips and tricks from experienced players.</li>
-            <li>Get fast, reliable service tailored to your specific requirements.</li>
-        </ul>
-        <p>EasyRust Services operates independently of Facepunch Studios and is built by passionate players to help others excel in the game. We aim to be your trusted partner in Rust!</p>
-    </section>
-
 
     <section id="resources">
         <h2>Order Resources</h2>
@@ -257,7 +243,7 @@
             <option value="quad">Quad</option>
             <option value="clan">Clan</option>
         </select>
-        <button onclick="alert('Order Resources!')">Order Now (Custom Amount)</button>
+        <button onclick="window.open('https://paypal.me/Ztavern1?amount=custom', '_blank')">Pay Now (Custom Amount)</button>
     </section>
 
     <section id="raid-protect">
@@ -317,16 +303,10 @@
         <button onclick="alert('Tips & Tricks - €50 per session')">Order Tips & Tricks (€50 per session)</button>
     </section>
 
-    
-
-        
-
-
-
     <footer>
-        <a href="#" onclick="showInfoModal('FAQ', 'Here is the FAQ content')">FAQ</a>
-        <a href="#" onclick="showInfoModal('Legal Disclaimer', 'EasyRust Services operates independently and is not affiliated with or endorsed by Facepunch Studios. All transactions are final.')">Legal Disclaimer</a>
-        <a href="#" onclick="showInfoModal('Terms of Use', 'By accessing or using EasyRust Services, you agree to be bound by these terms and conditions.')">Terms of Use</a>
+        <a href="#" onclick="showInfoModal('FAQ', 'FAQ content: Learn how our services operate, expected delivery times, and policies for refunds or issues with game servers. We strive for transparency and reliability.')">FAQ</a>
+        <a href="#" onclick="showInfoModal('Legal Disclaimer', 'EasyRust Services operates independently and is not affiliated with or endorsed by Facepunch Studios. All transactions are final. We are not liable for bans, server wipes, or other in-game disruptions.')">Legal Disclaimer</a>
+        <a href="#" onclick="showInfoModal('Terms of Use', 'By accessing or using EasyRust Services, you agree to the following: payments are final, refunds are only provided for undelivered services, and it is the user’s responsibility to provide accurate information. Non-compliance may result in service termination.')">Terms of Use</a>
         <p>&copy; 2025 EasyRust | All Rights Reserved</p>
     </footer>
 
@@ -353,19 +333,14 @@
             document.getElementById('contactForm').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
-    </script>
-    <div class="info-modal" id="infoModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #2e3b44; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); z-index: 1000;">
-        <h2 id="infoModalTitle" style="color: #D4AF37;"></h2>
-        <p id="infoModalContent" style="color: white;"></p>
-        <button style="background-color: #D4AF37; color: #1b1f23; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;" onclick="closeInfoModal()">Close</button>
-    </div>
-    <script>
+
         function showInfoModal(title, content) {
             document.getElementById('infoModalTitle').innerText = title;
             document.getElementById('infoModalContent').innerText = content;
             document.getElementById('infoModal').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
         }
+
         function closeInfoModal() {
             document.getElementById('infoModal').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
