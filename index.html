@@ -7,38 +7,41 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Verdana', sans-serif;
             margin: 0;
             padding: 0;
-            background: url('https://wallpapers.com/images/hd/rust-game-72b079fxn1h603f4.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background: linear-gradient(to bottom, #1b1f23, #2e3b44);
             color: white;
         }
 
         header {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: #2e3b44;
             padding: 20px;
             text-align: center;
             position: relative;
+            border-bottom: 3px solid #D4AF37;
         }
 
         header h1 {
-            color: #FFD700;
+            color: #D4AF37;
             margin: 0;
-            font-size: 36px;
+            font-size: 42px;
+            font-family: 'Impact', sans-serif;
         }
 
         .blackjack-indicator {
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #FFD700;
+            background-color: #1b1f23;
+            color: #D4AF37;
             padding: 10px;
             border-radius: 5px;
             display: flex;
             align-items: center;
             gap: 10px;
+            border: 1px solid #D4AF37;
+            cursor: pointer;
         }
 
         .blackjack-indicator img {
@@ -49,30 +52,34 @@
         section {
             padding: 40px 20px;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: #2e3b44;
             margin: 20px;
             border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
         }
 
         section h2 {
-            color: #FFD700;
+            color: #D4AF37;
             margin-bottom: 20px;
+            font-family: 'Verdana', sans-serif;
         }
 
         button {
-            background-color: rgba(76, 175, 80, 0.9);
-            color: white;
+            background-color: #1b1f23;
+            color: #D4AF37;
             padding: 15px 30px;
             font-size: 16px;
-            border: none;
-            border-radius: 5px;
+            font-family: 'Verdana', sans-serif;
+            border: 2px solid #D4AF37;
+            border-radius: 8px;
             cursor: pointer;
             margin: 10px;
             transition: all 0.3s ease;
         }
 
         button:hover {
-            background-color: rgba(76, 175, 80, 1);
+            background-color: #D4AF37;
+            color: #1b1f23;
             transform: scale(1.05);
         }
 
@@ -85,17 +92,16 @@
         }
 
         footer {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: #2e3b44;
             text-align: center;
             padding: 20px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            border-top: 3px solid #D4AF37;
         }
 
         footer p {
             color: white;
             margin: 0;
+            font-family: 'Verdana', sans-serif;
         }
 
         #blackjack-game {
@@ -107,7 +113,7 @@
 
         #blackjack-game p {
             font-size: 18px;
-            color: #FFD700;
+            color: #D4AF37;
         }
     </style>
 </head>
